@@ -4,7 +4,7 @@ namespace Modules\LaravelCore\Entities;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Module\Entities\Module;
+use Modules\LaravelCore\Entities\Module;
 use Modules\LaravelCore\Entities\Permission;
 use Modules\LaravelCore\Entities\RolePermission;
 use Modules\LaravelCore\Entities\RoleUser;

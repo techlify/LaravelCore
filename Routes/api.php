@@ -91,3 +91,33 @@ Route::delete("client-payments/{id}", "ClientPaymentController@destroy")
     ->middleware("TechlifyAccessControl:client_payment_delete");
 Route::patch("client-payments/{id}/set-paid", "ClientPaymentController@setPaid")
     ->middleware("TechlifyAccessControl:client_payment_set_paid");
+
+    Route::get("modules", "ModuleController@index")
+    ->middleware("TechlifyAccessControl:module_read");
+Route::post("modules", "ModuleController@store")
+    ->middleware("TechlifyAccessControl:module_create");
+Route::put("modules/{id}", "ModuleController@update")
+    ->middleware("TechlifyAccessControl:module_update");
+Route::delete("modules/{id}", "ModuleController@destroy")
+    ->middleware("TechlifyAccessControl:module_delete");
+Route::get("modules/{id}", "ModuleController@show")
+    ->middleware("TechlifyAccessControl:module_read");
+Route::patch("modules/{id}/enable", "ModuleController@enable")
+    ->middleware("TechlifyAccessControl:module_update");
+Route::patch("modules/{id}/disable", "ModuleController@disable")
+    ->middleware("TechlifyAccessControl:module_update");
+
+Route::get("module-packages", "ModulePackageController@index")
+    ->middleware("TechlifyAccessControl:module_package_read");
+
+/* Module Users */
+Route::get("module-users", "ModuleUserController@index")
+    ->middleware("TechlifyAccessControl:module_user_read");
+Route::post("module-users", "ModuleUserController@store")
+    ->middleware("TechlifyAccessControl:module_user_add");
+Route::post("module-users/invite", "ModuleUserController@inviteuser")
+    ->middleware("TechlifyAccessControl:module_user_add");
+Route::put("module-users/{id}", "ModuleUserController@destroy")
+    ->middleware("TechlifyAccessControl:module_user_delete");
+
+Route::get("current-client-modules", "ModuleController@getCurrentClientModules");

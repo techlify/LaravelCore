@@ -5,8 +5,8 @@ use App\Models\TechlifyModel;
 use Carbon\Carbon;
 use Modules\LaravelCore\Entities\Client;
 use Modules\LaravelCore\Entities\ClientSubscriptionStatus;
-use Modules\Module\Entities\Module;
-use Modules\Module\Entities\ModulePackage;
+use Modules\LaravelCore\Entities\Module;
+use Modules\LaravelCore\Entities\ModulePackage;
 
 class ClientSubscription extends TechlifyModel
 {

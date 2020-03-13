@@ -12,6 +12,8 @@ return [
         'forgot_password' => 'laravelcore::email.forgot-password-mail',
         'welcome' => 'laravelcore::email.welcome-mail',
         'client_welcome' => 'laravelcore::email.welcome-client-mail',
+        'module_invite_user' => 'laravelcore::email.invite-user-mail',
+        'module_added_to_user' => 'laravelcore::email.module-added-to-user-mail',
     ], 
     'email_sender' => [
         'mail_from_address' => env("MAIL_FROM_ADDRESS", 'no-reply@techlify.com'),

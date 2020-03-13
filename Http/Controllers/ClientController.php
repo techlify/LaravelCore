@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use Modules\LaravelCore\Emails\WelcomeClientMail;
 use Modules\LaravelCore\Entities\Client;
 use Modules\LaravelCore\Events\ClientCreatedEvent;
-use Modules\Module\Entities\Module;
+use Modules\LaravelCore\Entities\Module;
 use Modules\WorkTask\Entities\WorkTask;
 
 class ClientController extends Controller

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Modules\LaravelCore\Entities\Role;
 use Modules\LaravelCore\Entities\Permission;
-use Modules\Module\Entities\Module;
+use Modules\LaravelCore\Entities\Module;
 
 class RoleController extends Controller
 {

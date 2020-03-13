@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Modules\LaravelCore\Entities\ClientSubscription;
 use Modules\LaravelCore\Entities\ClientSubscriptionStatus;
 use Modules\LaravelCore\Events\ClientSubscriptionCreatedEvent;
-use Modules\Module\Entities\ModulePackage;
-use Modules\Module\Entities\Module;
+use Modules\LaravelCore\Entities\ModulePackage;
+use Modules\LaravelCore\Entities\Module;
 use Carbon\Carbon;
 
 class ClientSubscriptionController extends Controller
