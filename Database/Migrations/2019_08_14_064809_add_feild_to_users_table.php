@@ -13,6 +13,9 @@ class AddFeildToUsersTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasColumn('users', 'temporarily_invited')) {
+            return true;
+        }
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('temporarily_invited')
                 ->default(false);

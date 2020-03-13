@@ -14,6 +14,9 @@ class CreateUserTypesTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('user_types')) {
+            return;
+        }
         Schema::create('user_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');

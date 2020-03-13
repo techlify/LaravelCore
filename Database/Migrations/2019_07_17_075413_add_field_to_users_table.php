@@ -13,6 +13,9 @@ class AddFieldToUsersTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasColumn('users', 'is_temporary_password')) {
+            return true;
+        }
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('is_temporary_password')
             ->default(false);
