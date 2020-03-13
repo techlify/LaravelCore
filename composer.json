@@ -1,0 +1,26 @@
+{
+    "name": "techlify/laravel-core-module",
+    "description": "A core laravel module consisting of feature modules",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "Gokula Prasanna",
+            "email": "gokula@techlify.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\LaravelCore\\Providers\\LaravelCoreServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\LaravelCore\\": ""
+        }
+    }
+}

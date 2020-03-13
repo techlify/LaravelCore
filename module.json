@@ -1,0 +1,13 @@
+{
+    "name": "LaravelCore",
+    "alias": "laravelcore",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\LaravelCore\\Providers\\LaravelCoreServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
