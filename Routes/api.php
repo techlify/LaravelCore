@@ -47,3 +47,47 @@ Route::post("company-sign-up", "UserController@companySignUp");
 
 /* Forgot Password */
 Route::post("forgot-password", "UserController@forgotPassword");
+
+<?php
+/* Client */
+Route::get("clients", "ClientController@index")
+    ->middleware("TechlifyAccessControl:client_read");
+Route::post("clients", "ClientController@store")
+    ->middleware("TechlifyAccessControl:client_create");
+Route::put("clients/{id}", "ClientController@update")
+    ->middleware("TechlifyAccessControl:client_update");
+Route::delete("clients/{id}", "ClientController@destroy")
+    ->middleware("TechlifyAccessControl:client_delete");
+Route::get("clients/{id}", "ClientController@show")
+    ->middleware("TechlifyAccessControl:client_read");
+Route::get("clients-work-tasks-summary", "ClientController@clientWorkTaskSummary")
+    ->middleware("TechlifyAccessControl:client_read");
+
+/* Subscription Status */
+Route::get("client-subscription-statuses", "ClientSubscriptionStatusController@index");
+
+/* Client Subscription */
+Route::get("client-subscriptions", "ClientSubscriptionController@index")
+    ->middleware("TechlifyAccessControl:client_subscription_read");
+Route::post("client-subscriptions", "ClientSubscriptionController@store")
+    ->middleware("TechlifyAccessControl:client_subscription_create");
+Route::put("client-subscriptions/{id}", "ClientSubscriptionController@update")
+    ->middleware("TechlifyAccessControl:client_subscription_update");
+Route::delete("client-subscriptions/{id}", "ClientSubscriptionController@destroy")
+    ->middleware("TechlifyAccessControl:client_subscription_delete");
+Route::get("client-subscriptions/{id}", "ClientSubscriptionController@show")
+    ->middleware("TechlifyAccessControl:client_subscription_read");
+Route::post("client-subscriptions/trial", "ClientSubscriptionController@trialSubscription");
+
+
+/* Client Payments */
+Route::get("client-payments", "ClientPaymentController@index")
+    ->middleware("TechlifyAccessControl:client_payment_read");
+Route::post("client-payments", "ClientPaymentController@store")
+    ->middleware("TechlifyAccessControl:client_payment_create");
+Route::put("client-payments/{id}", "ClientPaymentController@update")
+    ->middleware("TechlifyAccessControl:client_payment_update");
+Route::delete("client-payments/{id}", "ClientPaymentController@destroy")
+    ->middleware("TechlifyAccessControl:client_payment_delete");
+Route::patch("client-payments/{id}/set-paid", "ClientPaymentController@setPaid")
+    ->middleware("TechlifyAccessControl:client_payment_set_paid");

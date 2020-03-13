@@ -9,8 +9,9 @@ return [
         'get_started' => false,
     ],
     'email_templates' => [
-        'forgot_password' => 'user::email.forgot-password-mail',
-        'welcome' => 'user::email.welcome-mail',
+        'forgot_password' => 'laravelcore::email.forgot-password-mail',
+        'welcome' => 'laravelcore::email.welcome-mail',
+        'client_welcome' => 'laravelcore::email.welcome-client-mail',
     ], 
     'email_sender' => [
         'mail_from_address' => env("MAIL_FROM_ADDRESS", 'no-reply@techlify.com'),

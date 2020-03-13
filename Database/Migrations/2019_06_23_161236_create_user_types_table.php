@@ -23,7 +23,7 @@ class CreateUserTypesTable extends Migration
         });
 
         $data = [
-            ["id" => 1, "title" => "Product Admin", "code" => "product-admin"],
+            ["id" => 1, "title" => "App Admin", "code" => "product-admin"],
             ["id" => 2, "title" => "Client Admin", "code" => "client-admin"],
             ["id" => 3, "title" => "Client User", "code" => "client-user"],
         ];
