@@ -134,7 +134,10 @@ class UserController extends Controller
         }
 
         $user->permissions = $permissions->unique();
-        $user->load('client.subscriptions');
+
+        if (request('relations')) {
+            $user->load(request('relations'));
+        }
 
         return ["user" => $user, "id" => $id];
     }
