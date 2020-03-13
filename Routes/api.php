@@ -48,7 +48,6 @@ Route::post("company-sign-up", "UserController@companySignUp");
 /* Forgot Password */
 Route::post("forgot-password", "UserController@forgotPassword");
 
-<?php
 /* Client */
 Route::get("clients", "ClientController@index")
     ->middleware("TechlifyAccessControl:client_read");
