@@ -11,6 +11,7 @@
 |
 */
 
-Route::prefix('laravelcore')->group(function() {
-    Route::get('/', 'LaravelCoreController@index');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('user/social-signup/redirect/{provider}', 'SocialController@redirect');
+    Route::get('user/social-signup/callback/{provider}', 'SocialController@callback');
 });
