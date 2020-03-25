@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Modules\LaravelCore\Entities\Client;
-use Modules\LaravelCore\Events\ClientCreatedEvent;
-use Modules\LaravelCore\Entities\Module;
-use Modules\LaravelCore\Entities\ModuleUser;
 use Modules\LaravelCore\Emails\ForgotPassword;
 use Modules\LaravelCore\Emails\WelcomeMail;
+use Modules\LaravelCore\Entities\Client;
+use Modules\LaravelCore\Entities\Module;
+use Modules\LaravelCore\Entities\ModuleUser;
 use Modules\LaravelCore\Entities\Role;
 use Modules\LaravelCore\Entities\UserType;
+use Modules\LaravelCore\Events\ClientCreatedEvent;
 
 class UserController extends Controller
 {
@@ -36,11 +36,13 @@ class UserController extends Controller
             'sort_by',
             'num_items',
             'not_in_module_id',
+            'relations'
         ]);
 
         $users = User::filter($filters)
             ->with('type')
-            ->with('roles');
+            ->with('roles')
+            ->with(request('relations'));
 
         return ["items" => $users->get()];
     }
@@ -117,7 +119,7 @@ class UserController extends Controller
         return ["item" => $user];
     }
 
-    public function currentUser()
+    public function currentUser(Request $request)
     {
         $id = auth()->id();
         $user = \Illuminate\Support\Facades\Auth::user();
@@ -132,9 +134,10 @@ class UserController extends Controller
                 $permissions = $permissions->merge($role->permissions);
             }
         }
-
         $user->permissions = $permissions->unique();
-        $user->load('client.subscriptions');
+        if ($request->relationship !== null) {
+            $user->load($request->relationship);
+        }
 
         return ["user" => $user, "id" => $id];
     }

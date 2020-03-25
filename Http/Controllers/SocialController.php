@@ -25,7 +25,7 @@ class SocialController extends Controller
         $user = Socialite::driver($provider)->stateless()->user();
 
         if (!$user->email) {
-            return redirect()->to(env('EBUSINESS_LINK') . '/#/signup');
+            return redirect()->to(config('laravelcore.app_frontend_link'));
         }
 
         $existingUser = User::where('email', $user->email)->first();
