@@ -36,15 +36,20 @@ class UserController extends Controller
             'sort_by',
             'num_items',
             'not_in_module_id',
-            'relations'
+            'relations',
+            'user_type_ids'
         ]);
 
-        $users = User::filter($filters)
-            ->with('type')
-            ->with('roles')
-            ->with(request('relations'));
+        $parts = [];
+        if (isset($filters['num_items']) && "" != trim($filters['num_items'])) {
+            $parts = explode("|", $filters['num_items']);
+        }
 
-        return ["items" => $users->get()];
+        $users = User::filter($filters)
+            ->with([request('relations')])
+            ->paginate(count($parts) ? $parts[0] : 25, ['*'], 'page', count($parts) > 1 ? $parts[1] : 1);
+
+        return $users;
     }
 
     /**
@@ -61,7 +66,7 @@ class UserController extends Controller
             "password" => "required",
         ];
 
-        if (auth()->user()->user_type_id == UserType::BIS_ADMIN) {
+        if (auth()->user()->user_type_id == UserType::APP_ADMIN) {
             $rules["client_id"] = "required|exists:clients,id";
             $rules["user_type_id"] = "required|numeric|min:2";
         }
@@ -75,7 +80,7 @@ class UserController extends Controller
         $user->user_type_id = request('user_type_id');
         $user->is_temporary_password = true;
 
-        if (auth()->user()->user_type_id == UserType::BIS_ADMIN) {
+        if (auth()->user()->user_type_id == UserType::APP_ADMIN) {
             $user->client_id = request('client_id');
         } else {
             $user->client_id = auth()->user()->client_id;
@@ -119,7 +124,7 @@ class UserController extends Controller
         return ["item" => $user];
     }
 
-    public function currentUser(Request $request)
+    public function currentUser()
     {
         $id = auth()->id();
         $user = \Illuminate\Support\Facades\Auth::user();
@@ -136,7 +141,7 @@ class UserController extends Controller
         }
         $user->permissions = $permissions->unique();
         if (request('relations')) {
-            $user->load(request('relations'));
+            $user->load([request('relations')]);
         }
 
         return ["user" => $user, "id" => $id];
@@ -156,10 +161,6 @@ class UserController extends Controller
             "name" => "required",
             "email" => "required",
         ];
-
-        if (auth()->user()->user_type_id == UserType::BIS_ADMIN) {
-            $rules["user_type_id"] = "required|numeric|min:2";
-        }
 
         $this->validate(request(), $rules);
 
